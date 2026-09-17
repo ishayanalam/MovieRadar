@@ -1,8 +1,18 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "var(--color-background)",
+        surface: "var(--color-surface)",
+        border: "var(--color-border)",
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          hover: "var(--color-accent-hover)",
+        },
+        rating: "var(--color-rating)",
+      },
+    },
   },
   plugins: [],
 };
