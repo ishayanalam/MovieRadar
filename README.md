@@ -23,7 +23,7 @@ MovieRadar is a modern, responsive web application that allows users to discover
 
 To run this project locally, follow these steps:
 
-1. **Clone the repository:**
+1. **Clone the repository and follow the steps**
    ```bash
    git clone [https://github.com/ishayanalam/MovieRadar.git](https://github.com/ishayanalam/MovieRadar.git)
    cd MovieRadar
