@@ -20,7 +20,7 @@ export default function MovieListing() {
         }
 
         const response = await fetch(
-          `https://api.tvmaze.com/search/shows?q=${searchQuery}`
+          `https://api.tvmaze.com/search/shows?q=${searchQuery}`,
         );
         const data = await response.json();
 
@@ -46,7 +46,8 @@ export default function MovieListing() {
 
       {!searchQuery && !isLoading && (
         <p className="text-center text-accent text-lg mt-8 font-semibold">
-          Here are a few quick picks. Type in the search bar above to find your favorites!
+          Here are a few quick picks. Type in the search bar above to find your
+          favorites!
         </p>
       )}
 
@@ -89,9 +90,9 @@ export default function MovieListing() {
         </div>
       )}
 
-      <MovieModal 
-        movie={selectedMovie} 
-        onClose={() => setSelectedMovie(null)} 
+      <MovieModal
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
       />
     </div>
   );
