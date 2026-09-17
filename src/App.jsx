@@ -1,3 +1,19 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./Pages/Root";
+import Home from "./Pages/Home";
+import MovieListing from "./Pages/MovieListing";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/movies", element: <MovieListing /> },
+    ],
+  },
+]);
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return <RouterProvider router={router}></RouterProvider>;
 }
