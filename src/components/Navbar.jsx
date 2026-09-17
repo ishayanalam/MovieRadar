@@ -12,9 +12,14 @@ export default function Navbar() {
         <NavLink
           to="/"
           end
-          className="text-lg sm:text-xl font-bold text-white tracking-wide"
+          className="flex items-center gap-2 text-lg sm:text-xl font-bold text-white tracking-wide hover:opacity-80 transition-opacity"
         >
-          MovieRadar
+          <img 
+            src="/logo.png" 
+            alt="MovieRadar" 
+            className="w-8 h-8 object-contain" 
+          />
+          <span>MovieRadar</span>
         </NavLink>
 
        
