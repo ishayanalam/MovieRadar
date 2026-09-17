@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar.jsx";
+import MovieModal from "../components/MovieModal.jsx";
 
 export default function MovieListing() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -13,13 +15,12 @@ export default function MovieListing() {
         if (!searchQuery.trim()) {
           const response = await fetch("https://api.tvmaze.com/shows");
           const data = await response.json();
-          // Keep only the first 5 items to prevent loading a massive list
           setMovies(data.slice(0, 5));
           return;
         }
 
         const response = await fetch(
-          `https://api.tvmaze.com/search/shows?q=${searchQuery}`,
+          `https://api.tvmaze.com/search/shows?q=${searchQuery}`
         );
         const data = await response.json();
 
@@ -40,14 +41,12 @@ export default function MovieListing() {
   }, [searchQuery]);
 
   return (
-    <div className="min-h-screen bg-background p-6 md:p-12">
+    <div className="min-h-screen bg-background p-6 md:p-12 relative">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-      {/* Message encouraging users to search when viewing the default 5 movies */}
       {!searchQuery && !isLoading && (
         <p className="text-center text-accent text-lg mt-8 font-semibold">
-          Here are a few quick picks. Type in the search bar above to find your
-          favorites!
+          Here are a few quick picks. Type in the search bar above to find your favorites!
         </p>
       )}
 
@@ -62,7 +61,8 @@ export default function MovieListing() {
           {movies.map((movie) => (
             <div
               key={movie.id}
-              className="bg-surface border border-border rounded-xl overflow-hidden"
+              onClick={() => setSelectedMovie(movie)}
+              className="bg-surface border border-border rounded-xl overflow-hidden cursor-pointer hover:border-accent hover:scale-105 transition-all duration-300"
             >
               {movie.image ? (
                 <img
@@ -88,6 +88,11 @@ export default function MovieListing() {
           ))}
         </div>
       )}
+
+      <MovieModal 
+        movie={selectedMovie} 
+        onClose={() => setSelectedMovie(null)} 
+      />
     </div>
   );
 }
